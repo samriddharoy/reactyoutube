@@ -1,4 +1,4 @@
-import { useState, useCallback , useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import "./index.css";
 
 function App() {
@@ -6,6 +6,9 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [characterAllowed, setCharacterAllowed] = useState(false);
   const [password, setPassword] = useState("");
+
+  // useRef hook for password input field
+  const passwordref = useRef(null);
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -27,8 +30,15 @@ function App() {
   }, [length, characterAllowed, numberAllowed]);
 
   useEffect(() => {
-    passwordGenerator()
-  },[ length , numberAllowed , characterAllowed , passwordGenerator ])
+    passwordGenerator();
+  }, [length, numberAllowed, characterAllowed, passwordGenerator]);
+
+  // Copy password to clipboard using useCallback
+  const passwordhandel = useCallback(() => {
+    passwordref.current.select();
+    passwordref.current?.setSelectionRange(0, 20);
+    navigator.clipboard.writeText(password);
+  }, [password]); // Dependency on password to update the handler when password changes
 
   return (
     <div className="h-screen w-screen bg-black flex items-center justify-center">
@@ -40,6 +50,7 @@ function App() {
         {/* Input & Copy Button */}
         <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden mb-4">
           <input
+            ref={passwordref} // Correct ref name
             type="text"
             value={password}
             className="outline-none w-full py-2 px-3 bg-transparent text-white"
@@ -48,7 +59,7 @@ function App() {
           />
           <button
             className="bg-orange-500 px-4 py-2 text-white font-bold hover:bg-orange-600 transition"
-            onClick={() => navigator.clipboard.writeText(password)}
+            onClick={passwordhandel} // Correct handler for the button click
           >
             Copy
           </button>
