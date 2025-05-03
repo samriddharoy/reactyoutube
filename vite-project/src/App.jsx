@@ -33,7 +33,9 @@ function App() {
     <h1 className= ' bg-green-500 text-white text-2xl font-bold text-center'>
       Hello world!
     </h1>
-    <Card name  price ="samriddha"/>
+    <Card title="ramo"  price ="90000000"/>
+    <Card title="siddhi" price="1000000000"/>
+    <Card title="siddhi" price="1000000000" btntext = "yoyo"/>
     </>
   )
 }

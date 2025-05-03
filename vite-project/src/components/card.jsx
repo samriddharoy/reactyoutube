@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Card({ image, title, price, stock }) {
+function Card({ image, title, price, stock , btntext }) {
   return (
     <div>
       <div className="flex font-sans">
@@ -26,7 +26,7 @@ function Card({ image, title, price, stock }) {
           </div>
           <div className="flex space-x-4 mb-6 text-sm font-medium">
             <button className="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
-              Buy now
+              {btntext || "Add to cart"}
             </button>
             <button className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900" type="button">
               Add to bag

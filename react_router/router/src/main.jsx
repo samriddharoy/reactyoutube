@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Layout from './layout'
+import Layout from './Layout'
 import Home from './components/Home/Home'
 import About from './components/About/About'
-import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter,  RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
   {
